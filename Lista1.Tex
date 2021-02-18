@@ -1,0 +1,121 @@
+\documentclass[12pt]{extarticle}
+\usepackage[brazil]{babel}
+\usepackage{graphicx, hyperref}
+\usepackage{framed}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[top=1 in,bottom=1in, left=1 in, right=1 in]{geometry}
+\usepackage{graphicx}
+\usepackage[skip=2pt]{caption}
+\usepackage{blindtext}
+\usepackage[fixlanguage]{babelbib}
+\captionsetup{font={small}} 
+\graphicspath{{Figuras/}}
+\usepackage{appendix}
+\newcommand{\asp}[1]{``#1"}
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\nota}[1]{\todo[color=black!10, bordercolor=white!100, linecolor = black!20, size =\scriptsize]{#1} }
+\definecolor{mypink1}{rgb}{0.858, 0.188, 0.478}
+\definecolor{mypink2}{RGB}{219, 48, 122}
+\definecolor{mypink3}{cmyk}{0, 0.7808, 0.4429, 0.1412}
+\definecolor{mygray}{gray}{0.6}
+\newcommand{\arb}{um elemento arbitrário }
+\newenvironment{resposta}{ \color{mygray}}{}
+\newcommand{\true}{\textcolor{red}{\textbf{\textit{V}}}}
+\newcommand{\false}{\textcolor{red}{\textbf{\textit{F}}}}
+\newcommand{\keys}[1]{\{#1\}}
+\newcommand{\subscript}[2]{$#1 _ #2$}
+\newcommand{\definition}[3][x]{\{#1|#1 \in \mathbb{#2},#3\}}
+\newcommand{\natura}{\mathbb{N}}
+\newcommand{\integer}{\mathbb{Z}}
+\newcommand{\real}{\mathbb{R}}
+\newenvironment{pif}[3][1]{
+Tomando $n = #1$ então $#2$ e $#3$
+
+Agora vamos assumir que a expressão é valida para $#1 > n \leq k$ e vamos provar que funciona para $n=k+1$.
+}{}
+\newcommand{\arranjo}[2]{A_{#1,#2}=\frac{#1!}{(#1-#2)!}}
+\newcommand{\arranjoform}[2]{\frac{#1!}{(#1-#2)!}}
+\newcommand{\conbination}[2]{C_{#1,#2}=\frac{#1!}{#2!(#1-#2)!}}
+\newcommand{\conbinationform}[2]{\frac{#1!}{#2!(#1-#2)!}}
+\newcommand{\rconbination}[2]{CR_{#1,#2}=\frac{(#1+#2-1)!}{#2!(#1-1)!}}
+\newcommand{\clinear}[1]{\foreach \i in {1,...,#1}{x_\i+}}
+\newcommand{\fatorial}[2]{\foreach \i in {#1,...,#2}{\i.}}
+\newcommand{\soma}[2]{\sum_{n=#1}^{\infty}#2}
+\newcommand{\texto}{\color{mygray}\blindtext\color{black}}
+\newcommand{\fim}{\begin{flushright}
+   \emph{q.e.d}
+\end{flushright}}
+%--------------%--------------%----------------------%-----------%--------------
+
+\title{Teoria Axiomática dos Conjuntos}
+\author{Beatriz de Faria, 11201810015}
+\date{Fevereiro, 2021}
+
+\begin{document}
+
+\maketitle
+
+{\Large\textbf{Lista de Axiomas:}}
+
+\begin{enumerate}[(A)]
+    \item  \label{(A)} Existencionalidade: $\forall x \forall y (x = y \Leftrightarrow \forall z (z \in x \Leftrightarrow z \in y))$
+    \item \label{(B)} Vazio: $\exists x \forall y (\neg(y \in x))$
+    \item \label{(C)} Especificação: $\forall x \exists y \forall z (z \in  y \Leftrightarrow (z \in x \land \varphi(z)))$
+    \item \label{(D)} Par: $\forall x \forall y \exists z \forall w (w \in z \Leftrightarrow (w = x \lor w = y))$
+    \item \label{(E)} União: $\forall x \exists y \forall z (z \in y \Leftrightarrow \exists w (w \in x \land z \in w))$
+    \item \label{(F)} Partes: $\forall x \exists y \forall z (z \in y \Leftrightarrow \forall w (w \in z \Rightarrow w \in x))$
+%    \item \label{(G)}
+%    \item \label{(H)}
+%    \item \label{(i)}
+%    \item \label{(J)}
+\end{enumerate}
+
+\section{Exercício 2.1.}
+
+Suponha, por absurdo, que existem 2 conjuntos ($x$,$x'$) $x$ $\neq$ $x'$ que satisfazem a propriedade:
+
+\begin{equation}
+   \forall y (y \notin Z)
+\end{equation}\label{(1)}
+
+Sendo Z, x ou x'.
+
+Como $x$ $\neq$ $x'$, pelo axioma (\ref{(A)}) temos que:
+
+$$\exists a \in x (a \notin x')$$
+
+(Ou vice-versa, mas, podemos supor a proposição acima sem perda de generalidade.)
+
+Porém, como a equação (\ref{(1)}) é válida $\forall y$, ela é válida, em particular para a.
+$$\therefore a \in x \land a \notin x$$
+
+Portanto, não existe tal a.
+
+\fim
+
+\section{Exercício 2.26}
+
+\section{Exercício 2.27}
+
+\subsection{i}
+
+\subsection{iii}
+
+\subsection{vi}
+
+\section{Exercício 2.30}
+
+\section{Exercício 2.36}
+
+\section{Exercício 2.40}
+
+\section{Exercício 2.52}
+
+\end{document}
