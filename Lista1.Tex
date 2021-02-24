@@ -15,6 +15,8 @@
 \usepackage[skip=2pt]{caption}
 \usepackage{blindtext}
 \usepackage[fixlanguage]{babelbib}
+\usepackage{chngcntr}
+\usepackage{calrsfs}
 \captionsetup{font={small}} 
 \graphicspath{{Figuras/}}
 \usepackage{appendix}
@@ -50,8 +52,11 @@ Agora vamos assumir que a expressão é valida para $#1 > n \leq k$ e vamos prov
 \newcommand{\soma}[2]{\sum_{n=#1}^{\infty}#2}
 \newcommand{\texto}{\color{mygray}\blindtext\color{black}}
 \newcommand{\fim}{\begin{flushright}
+
    \emph{q.e.d}
 \end{flushright}}
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
 %--------------%--------------%----------------------%-----------%--------------
 
 \title{Teoria Axiomática dos Conjuntos}
@@ -62,38 +67,23 @@ Agora vamos assumir que a expressão é valida para $#1 > n \leq k$ e vamos prov
 
 \maketitle
 
-{\Large\textbf{Lista de Axiomas:}}
-
-\begin{enumerate}[(A)]
-    \item  \label{(A)} Existencionalidade: $\forall x \forall y (x = y \Leftrightarrow \forall z (z \in x \Leftrightarrow z \in y))$
-    \item \label{(B)} Vazio: $\exists x \forall y (\neg(y \in x))$
-    \item \label{(C)} Especificação: $\forall x \exists y \forall z (z \in  y \Leftrightarrow (z \in x \land \varphi(z)))$
-    \item \label{(D)} Par: $\forall x \forall y \exists z \forall w (w \in z \Leftrightarrow (w = x \lor w = y))$
-    \item \label{(E)} União: $\forall x \exists y \forall z (z \in y \Leftrightarrow \exists w (w \in x \land z \in w))$
-    \item \label{(F)} Partes: $\forall x \exists y \forall z (z \in y \Leftrightarrow \forall w (w \in z \Rightarrow w \in x))$
-%    \item \label{(G)}
-%    \item \label{(H)}
-%    \item \label{(i)}
-%    \item \label{(J)}
-\end{enumerate}
-
 \section{Exercício 2.1.}
 
 Suponha, por absurdo, que existem 2 conjuntos ($x$,$x'$) $x$ $\neq$ $x'$ que satisfazem a propriedade:
 
 \begin{equation}
    \forall y (y \notin Z)
-\end{equation}\label{(1)}
+\end{equation}
 
 Sendo Z, x ou x'.
 
-Como $x$ $\neq$ $x'$, pelo axioma (\ref{(A)}) temos que:
+Como $x$ $\neq$ $x'$, pelo axioma da existencionalidade temos que:
 
 $$\exists a \in x (a \notin x')$$
 
 (Ou vice-versa, mas, podemos supor a proposição acima sem perda de generalidade.)
 
-Porém, como a equação (\ref{(1)}) é válida $\forall y$, ela é válida, em particular para a.
+Porém, como a afirmação (1) é válida $\forall y$, ela é válida, em particular para a.
 $$\therefore a \in x \land a \notin x$$
 
 Portanto, não existe tal a.
@@ -102,20 +92,261 @@ Portanto, não existe tal a.
 
 \section{Exercício 2.26}
 
+Para que $a \neq \emptyset \land \bigcap a = \bigcup a$, precisamos encontrar o conjunto a que satisfaça:
+
+\begin{equation}
+    \forall z (z \in \bigcup a \Leftrightarrow \exists w (w \in a \land z \in w))
+\end{equation}
+
+\begin{equation}
+    \forall z (z \in \bigcap a \Leftrightarrow \forall w \in a (z \in w))
+\end{equation}
+
+Pelo Axioma da existencionalidade:
+
+$$
+\bigcap a = \bigcup a \Leftrightarrow \forall z (z \in \bigcap a \Leftrightarrow z \in \bigcup a)
+$$
+
+Em outras palavras, (1) ocorre $\Leftrightarrow$ (2) ocorre:
+
+$$
+\exists w (w \in a \land z \in w) \Leftrightarrow \forall w \in a (z \in w)
+$$
+
+Note que, se existisse um conjunto $w' \in a$ tal que $\exists s \in w' (s \notin w)$. Logo $s \in \bigcup a$ e $s \notin \bigcap a$, o que contradiz a afirmação acima.
+
+$$
+\therefore \forall w \in a (w = w)
+$$
+
+Então podemos classificar a como:
+
+$$a = \{w\}$$
+
+Para um conjunto w qualquer.
+
 \section{Exercício 2.27}
 
-\subsection{i}
+\subsection{i} 
+
+$$
+    a \subseteq \wp (\bigcup a)
+$$
+
+Queremos provar a equação acima, primeiramente, podemos reescreve-la como:
+
+$$\forall x \in a  \Rightarrow x \in \wp (\bigcup a)$$
+
+Para demonstrar essa proposição, primeiramente, fixe um $x \in a$ qualquer. Dizer que $x \in \wp (\bigcup a)$ é equivalente à dizer que $x \subseteq \bigcup a$. Isto é:
+
+$$\forall y \in x (y \in \bigcup a)$$
+
+Tome um $y \in x$ qualquer, como $x \in a$, então $y \subseteq a$. Ou seja, precisamos mostrar que $a \in \bigcup a$. Para tanto, vamos lembrar a definição de $\bigcup a$
+
+$$\forall z (z \in \bigcup a \Leftrightarrow \exists w (w \in a \land z \in w))$$
+
+Em outras palavras, para mostrar que $a \in \bigcup a$, precisamos de um conjunto w tal que $w \in a \land \forall z \in w (z \in a)$. Note que a existência de w é garantida pelo axioma da especificação: 
+
+$$\forall a \exists w \forall z (z \in w \Leftrightarrow (z \in a \land \varphi(z)))$$
+
+No nosso caso:
+
+$$\forall a \exists w \forall z (z \in w \Leftrightarrow (z \in a))$$
+
+\fim
 
 \subsection{iii}
 
+Primeiramente, vamos mostrar que $\bigcap (a \cup b) \subseteq (\bigcap a) \cap (\bigcap b)$. Tome um $x \in \bigcap (a \cup b)$ qualquer. Por definição, sabemos que:
+
+$$
+\forall w \in a \cup b (x \in w)
+$$
+
+$$
+\forall w ( w \in a \lor w \in b (x \in w))
+$$
+
+$$
+\forall w \in a (x \in w) \land \forall w \in b (x \in w)
+$$
+
+$$
+x \in \bigcap a \land x \in \bigcap b
+$$
+
+$$
+\therefore x \in (\bigcap a) \cap (\bigcap b)
+$$
+
+Agora, vamos mostrar que $(\bigcap a) \cap (\bigcap b) \subseteq \bigcap (a \cup b)$. Para tanto tome um $x \in (\bigcap a) \cap (\bigcap b)$ arbitrário.
+
+$$
+x \in \bigcap a \land x \in \bigcap b
+$$
+
+$$
+\forall w \in a (x \in w) \land \forall w \in b (x \in w)
+$$
+
+$$
+\forall w (w \in a \lor w \in b (x \in w))
+$$
+
+$$
+\forall w \in a \cup b (x \in w)
+$$
+
+$$
+x \in \bigcap (a \cup b)
+$$
+
+\fim 
+
 \subsection{vi}
+
+Primeiramente, vamos provar a ida ($\Rightarrow$)
+
+$$\forall z(z \in \bigcup a \Leftrightarrow \exists x (x \in a \land z \in x)$$
+
+Portanto, podemos reescrever $\bigcup a \subseteq \bigcap b$ como (peço desculpas porque vou escrever mesmo, em linguagem matemática me pareceu um pouco confuso):
+
+Para todo z tal que $z \in x \land x \in w$, $z \in y$ para algum $y \in b$
+
+E isto pode ser reescrito, mais uma vez, como:
+
+$$\forall x \in a \forall y \in b (z \in x \Rightarrow z \in y)$$
+
+Ou seja, $x \subseteq y$
+
+Agora, vamos provar a volta ($\Leftarrow$)
+
+\begin{equation}
+   \forall z (z \in \bigcup a \Leftrightarrow \exists \alpha \in a \land z \in \alpha) 
+\end{equation}
+
+\begin{equation}
+ \forall n (n \in \bigcap b \Leftrightarrow \forall y \in b (n \in y))   
+\end{equation}
+
+Tome um $z \in \bigcup a$ qualquer. Por hipótese, nós temos que:
+
+$$\forall x \in a \forall y \in b (x \subseteq y)$$
+
+Como isto é válido $\forall x$, em particular, é válido para o conjunto $\alpha$ empregado em (1): 
+
+$$\forall z(z \in \bigcup a \Leftrightarrow \exists x \in a \land z \in x) $$
+
+Como $x \in a$, $\forall y \in b$ ($z \in y$), devido a nossa hipótese. Em outras palavras:
+
+$$z \in \bigcap b$$
+
+\fim
 
 \section{Exercício 2.30}
 
+Suponha, por absurdo, que existem 2 conjuntos $r$ e $r'$ que satisfazem:
+
+$$\forall z (z \in R \Leftrightarrow \exists x \in a \exists y \in b : z = (x,y))$$
+
+Sendo a e b dois conjuntos arbitrários e $R$ um conjunto tal que:
+
+\begin{equation}
+  \forall x \in a \forall y \in b  ((x,y) \in R)  
+\end{equation} \label{1}
+
+ O Axioma da existencionalidade nos diz que:
+
+$$ r \neq r' \Leftrightarrow \exists z \in r' ( z \notin r) \lor \exists z \in r ( z \notin r')$$
+
+Suponha, sem perda de generalidade que, $\exists z \in r' (z \notin r)$. Em outras palavras, existe, no mínimo, um $z$ tal que:
+
+$$z = (x,y) \land (x,y) \notin r$$
+
+Porém, pela equação (1) todo par ordenado formado pelos conjuntos $a$ e $b$ $\in R$, como $r$ é um conjunto que satisfaz essa equação então $z \in r \land z \notin r$
+
+\fim
+
 \section{Exercício 2.36}
+
+Por hipótese, temos que:
+
+$$\forall z \in p \exists x \exists y (z = (x,y))$$
+
+O axioma da especificação nos garante que podemos construir conjuntos $a$ e $b$ tais que:
+
+\begin{equation}
+    \forall x (z = (x,y)) \Rightarrow x \in a
+\end{equation}
+
+\begin{equation}
+ \forall y (z = (x,y)) \Rightarrow y \in b
+\end{equation}
+
+Vamos demonstrar que $p$ é uma relação de $a$ em $b$, isto é $p \subseteq a \times b$. Tome um $z \in p$ qualquer,
+
+$$
+\exists x \in a \exists y \in b (z = (x,y))
+$$
+
+$$
+\therefore z \in a \times b
+$$
+
+\fim
 
 \section{Exercício 2.40}
 
+Queremos mostrar que $\bigcup c$ é uma função que denotaremos pela letra R, isto é:
+
+$$\forall x \in dom (\bigcup c) \exists! y (xRy) $$
+
+Note que
+
+\begin{equation}
+    x \in dom (\bigcup c) \Leftrightarrow \exists f (dom (f) \in c \land x \in dom (f))
+\end{equation}
+
+Temos por hipótese que:
+
+\begin{equation}
+   \forall g,h \in c (\forall z \in dom(g) \cap dom(h) (g(z) = h(z))) 
+\end{equation}
+
+Como isto vale para quaisquer funções, em particular vale para f (da proposição 1)
+
+Isto nos garante que $\exists y (f(x) = y)$, agora resta mostrar que ele é único. Note que, para que $y$ não seja único, precisamos de um $x$ tal que $x \in dom(g) \land x \in dom(h)$, sendo $dom(g)$ e $dom(h)$ o domínio funções quaisquer em c.  (se x não pertence a g ou h, x não está no domínio de c. Se $x$ pertence há apenas $dom(g)$ ou $dom(h)$, então y é único, pois x é único).
+
+Então, fixe um $x$ tal que $x \in dom(g) \land x \in dom(h)$, note que, pela hipótese (proposição 2), $g(x) = h(x) = y$, portanto y é único.
+
+\fim
+
 \section{Exercício 2.52}
 
+Queremos construir um conjunto $b$ de forma que a função $f$ da proposição seguinte:
+
+$$
+\forall x \in a \forall y \in a (x \leq y \Leftrightarrow f(x) \trianglelefteq f(y))
+$$
+
+Sendo $\leq$ a ordem parcial de $a$ e $\trianglelefteq$ a ordem parcial de $b$ definida como:
+
+$$
+\forall x \in b \forall y \in b (x \trianglelefteq y \Leftrightarrow x \subseteq y)
+$$
+
+A partir disto podemos reescrever nossa proposição inicial como:
+
+$$
+\forall x \in a \forall y \in a (x \leq y \Leftrightarrow f(x) \subseteq f(y))
+$$
+
+Nosso objetivo é construir um conjunto $b$ de modo que:
+
+$$
+\forall y \in b \exists ! x \in a (xfy)
+$$
+
 \end{document}
+
