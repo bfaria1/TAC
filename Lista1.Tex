@@ -77,7 +77,7 @@ Suponha, por absurdo, que existem 2 conjuntos ($x$,$x'$) $x$ $\neq$ $x'$ que sat
 
 Sendo Z, x ou x'.
 
-Como $x$ $\neq$ $x'$, pelo axioma da existencionalidade temos que:
+Como $x$ $\neq$ $x'$, pelo axioma da existensionalidade temos que:
 
 $$\exists a \in x (a \notin x')$$
 
@@ -102,7 +102,7 @@ Para que $a \neq \emptyset \land \bigcap a = \bigcup a$, precisamos encontrar o 
     \forall z (z \in \bigcap a \Leftrightarrow \forall w \in a (z \in w))
 \end{equation}
 
-Pelo Axioma da existencionalidade:
+Pelo Axioma da existensionalidade:
 
 $$
 \bigcap a = \bigcup a \Leftrightarrow \forall z (z \in \bigcap a \Leftrightarrow z \in \bigcup a)
@@ -256,7 +256,7 @@ Sendo a e b dois conjuntos arbitrários e $R$ um conjunto tal que:
   \forall x \in a \forall y \in b  ((x,y) \in R)  
 \end{equation} \label{1}
 
- O Axioma da existencionalidade nos diz que:
+ O Axioma da existensionalidade nos diz que:
 
 $$ r \neq r' \Leftrightarrow \exists z \in r' ( z \notin r) \lor \exists z \in r ( z \notin r')$$
 
@@ -324,7 +324,7 @@ Então, fixe um $x$ tal que $x \in dom(g) \land x \in dom(h)$, note que, pela hi
 
 \section{Exercício 2.52}
 
-Queremos construir um conjunto $b$ de forma que a função $f$ da proposição seguinte:
+Queremos construir um conjunto b de modo que a função $f$ seja uma bijeção de $a$ em $b$:
 
 $$
 \forall x \in a \forall y \in a (x \leq y \Leftrightarrow f(x) \trianglelefteq f(y))
@@ -342,11 +342,45 @@ $$
 \forall x \in a \forall y \in a (x \leq y \Leftrightarrow f(x) \subseteq f(y))
 $$
 
-Nosso objetivo é construir um conjunto $b$ de modo que:
+Ou seja, precisamos construir um conjunto b, de modo que:
 
 $$
-\forall y \in b \exists ! x \in a (xfy)
+\forall x \in a \forall y \in a (x \leq y \Leftrightarrow \exists z1, z2 \in b (z1 \subseteq z2))
 $$
+
+Sendo $z1 = f(x) \land z2 = f(y)$. Seja $f$ a função que leva um elemento $x$ de $a$ no conjunto das partes de x, isto é:
+
+(Não sei se estou assassinando a matemática aqui dizendo que $x \times \wp (x)$ forma uma função, eu acho que não, mas ainda me parece esquisito).
+
+$$
+\forall x \in a \exists z \in b (z = \wp (x))
+$$
+
+Vamos provar que essa função é uma bijeção, isto é:
+
+$$
+\forall z \in b \exists ! x \in a (z = \wp (x))
+$$
+
+Sejam $x,y \in a$ e $\wp (x) = \wp (y)$, temos que:
+
+$$
+z \in \wp (x) \Leftrightarrow z \subseteq x 
+$$
+
+como $\wp(y) = \wp(x)$
+
+$$
+z \in \wp (y) \Leftrightarrow z \subseteq x
+$$
+
+pela definição de conjunto das partes:
+
+$$
+ z \subseteq y \Leftrightarrow z \in \wp (y) \Leftrightarrow z \subseteq x 
+$$
+
+Ou seja, $z \in y \Leftrightarrow z \in x$. Pelo axioma da existensionalidade $y = x$
 
 \end{document}
 
