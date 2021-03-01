@@ -270,29 +270,54 @@ Porém, pela equação (1) todo par ordenado formado pelos conjuntos $a$ e $b$ $
 
 \section{Exercício 2.36}
 
-Por hipótese, temos que:
+Queremos provar que existem conjuntos $a$ e $b$ tais que:
 
-$$\forall z \in p \exists x \exists y (z = (x,y))$$
+$$
+\forall z ( z \in p \Rightarrow \exists r \in a \exists s \in b (z = (r,s)))
+$$
 
-O axioma da especificação nos garante que podemos construir conjuntos $a$ e $b$ tais que:
-
+Por hipótese, temos que, $z \in p \Rightarrow \exists x \exists y (z = (x,y))$, em outras palavras queremos provar que 
 \begin{equation}
-    \forall x (z = (x,y)) \Rightarrow x \in a
+\forall x (z = (x,y) \Rightarrow \exists r (x \in r \land r \in a))    
 \end{equation}
 
+
+
 \begin{equation}
- \forall y (z = (x,y)) \Rightarrow y \in b
+\forall y (z = (x,y) \Rightarrow \exists s (y \in s \land s \in a))   
 \end{equation}
 
-Vamos demonstrar que $p$ é uma relação de $a$ em $b$, isto é $p \subseteq a \times b$. Tome um $z \in p$ qualquer,
+%O axioma da união nos garante que:
+
+%$$
+%\forall a \exists x' \forall z (z \in x' \Leftrightarrow \exists r (r \in a \land z \in r))
+%$$
+
+
+%$$
+%\forall b \exists y' \forall z (z \in y' \Leftrightarrow \exists r (r \in b \land z \in r))
+%$$
+
+
+
+Para tanto, precisamos de conjuntos $r$ e $s$ tais que, $\forall x ( z = (x,y) \Rightarrow x \in r)$ \\ e $\forall y ( z = (x,y) \Rightarrow y \in s)$. Note que, pelo axioma do par, podemos construir os conjuntos $r$ e $s$ como: $r = \{x\}$ e $s = \{y\}$. Isto nos permite reescrever a hipótese como:
+$$
+z \in p \Rightarrow \exists x \in r \exists y \in s (z = (x,y))
+$$
+
+Sejam os conjuntos a e b:
 
 $$
-\exists x \in a \exists y \in b (z = (x,y))
+a = \bigcup r
 $$
 
+Note que, pela definição de $\bigcup r$ isso satisfaz (1).
+
 $$
-\therefore z \in a \times b
+b = \bigcup s
 $$
+
+Note que, pela definição de $\bigcup s$ isso satisfaz (2).
 
 \fim
 
@@ -349,14 +374,96 @@ $$
 $$
 
 Sendo $z1 = f(x) \land z2 = f(y)$. Seja $f$ a função que leva um elemento $x$ de $a$ no conjunto das partes de x, isto é:
-
-(Não sei se estou assassinando a matemática aqui dizendo que $x \times \wp (x)$ forma uma função, eu acho que não, mas ainda me parece esquisito).
-
 $$
 \forall x \in a \exists z \in b (z = \wp (x))
 $$
 
-Vamos provar que essa função é uma bijeção, isto é:
+Primeiramente, vamos ver se isto funciona, no caso, $$x \leq y \Leftrightarrow f(x) \subseteq f(y)$$
+
+\subsection{($\Rightarrow$)}
+
+\begin{equation}
+    \forall x \in a \forall y \in a (x \leq y \Rightarrow \wp (x) \subseteq \wp (y))
+\end{equation}
+
+Pela contrapositiva, podemos dizer que $x > y \Leftrightarrow \wp(x) \nsubseteq \wp(y)$.
+
+Nossa ordem em a nos garante que:
+
+$$
+xRy \land yRx \Rightarrow x=y
+$$
+
+$$
+\therefore x > y \Rightarrow xRy \land \neg (yRx)
+$$
+
+(tá, eu tô chutando essa parte eu não consigo provar essa afirmação usando apenas $x \neq y \Rightarrow \neg(xRy \lor yRx)$, na real, eu não sei se eu provei ou se $x>y \Rightarrow yRx \land \neg(xRy)$ ou ainda eu deveria usar que $\wp (y) \subset \wp(x)$, de toda forma, foi o que consegui fazer)
+
+Portanto, podemos dividir isto em 2 condições:
+
+$$
+    x > y \Rightarrow xRy \Rightarrow \forall z \in R (\exists s \in x \exists r \in y (z = (s,r) = \{\{s\},\{s,r\}\})
+$$
+
+
+$$
+     x > y \Rightarrow \neg(yRx) \Rightarrow \exists z \in R (\exists s \in x \forall r \in y (z \neq (r,s) = \{\{r\},\{r,s\}\})
+$$
+
+Note que, $\{r,s\} = \{s,r\}$
+
+$$
+\therefore \forall z \exists s \in x \forall r \in y (z = \{\{s\},\{s,r\}\} \neq \{\{r\},\{s,r\}\})
+$$
+
+$$
+\exists \alpha (\alpha \in \{s\} \land \alpha \notin \{r\})
+$$
+
+Note que, $\{s\} \in \wp (x) \land \{r\} \in \wp (y)$. Portanto, $\alpha \subseteq \wp(x) \land \alpha \nsubseteq \wp(y) \Rightarrow p(x) \nsubseteq p(y)$
+
+\subsection{($\Leftarrow$)}
+
+\begin{equation}
+    \forall x \in a \forall y \in a (\wp (x) \subseteq \wp (y) \Rightarrow  x \leq y)
+\end{equation}
+
+\textbf{1. xRx}
+
+Queremos chegar em:
+
+$$
+\wp (x) \subseteq \wp (x) \Rightarrow R \subseteq x^2 = \{\{x\},\{x,x\}\} = \{\{x\},\{x\}\}
+$$
+
+
+
+Note que, $R \subseteq a^2$ e $x \in a$, portanto, $\forall z \in R \exists x \in a  (z = \{\{x\},\{x\}\})$
+
+\textbf{2. xRy $\land$ yRx $\Rightarrow x = y$}
+
+$$
+\forall z \in R (\exists s \in x \exists r \in y (z = \{\{s\},\{s,r\}\})
+$$
+
+$$
+\forall z \in R (\exists s \in x \exists r \in y (z = \{\{r\},\{r,s\}\})
+$$
+
+$$
+\therefore
+$$
+
+$$
+\forall z \in R (\exists s \in x \exists r \in y(z = \{\{r\},\{r,s\}\} \land z = \{\{s\},\{s,r\}\} ))
+$$
+
+Ok, aqui eu desisto, desculpa :(
+
+\subsection{f(x) é uma bijeção}
+
+Agora, vamos provar que essa função é uma bijeção, isto é:
 
 $$
 \forall z \in b \exists ! x \in a (z = \wp (x))
