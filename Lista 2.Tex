@@ -1,0 +1,226 @@
+\documentclass[12pt]{extarticle}
+\usepackage[brazil]{babel}
+\usepackage{graphicx, hyperref}
+\usepackage{framed}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[top=1 in,bottom=1in, left=1 in, right=1 in]{geometry}
+\usepackage{graphicx}
+\usepackage[skip=2pt]{caption}
+\usepackage{blindtext}
+\usepackage[fixlanguage]{babelbib}
+\usepackage{chngcntr}
+\usepackage{calrsfs}
+\captionsetup{font={small}} 
+\graphicspath{{Figuras/}}
+\usepackage{appendix}
+\newcommand{\asp}[1]{``#1"}
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\nota}[1]{\todo[color=black!10, bordercolor=white!100, linecolor = black!20, size =\scriptsize]{#1} }
+\definecolor{mypink1}{rgb}{0.858, 0.188, 0.478}
+\definecolor{mypink2}{RGB}{219, 48, 122}
+\definecolor{mypink3}{cmyk}{0, 0.7808, 0.4429, 0.1412}
+\definecolor{mygray}{gray}{0.6}
+\newcommand{\arb}{um elemento arbitrário }
+\newenvironment{resposta}{ \color{mygray}}{}
+\newcommand{\true}{\textcolor{red}{\textbf{\textit{V}}}}
+\newcommand{\false}{\textcolor{red}{\textbf{\textit{F}}}}
+\newcommand{\keys}[1]{\{#1\}}
+\newcommand{\subscript}[2]{$#1 _ #2$}
+\newcommand{\definition}[3][x]{\{#1|#1 \in \mathbb{#2},#3\}}
+\newcommand{\natura}{\mathbb{N}}
+\newcommand{\integer}{\mathbb{Z}}
+\newcommand{\real}{\mathbb{R}}
+\newenvironment{pif}[3][1]{
+Tomando $n = #1$ então $#2$ e $#3$
+
+Agora vamos assumir que a expressão é valida para $#1 > n \leq k$ e vamos provar que funciona para $n=k+1$.
+}{}
+\newcommand{\arranjo}[2]{A_{#1,#2}=\frac{#1!}{(#1-#2)!}}
+\newcommand{\arranjoform}[2]{\frac{#1!}{(#1-#2)!}}
+\newcommand{\conbination}[2]{C_{#1,#2}=\frac{#1!}{#2!(#1-#2)!}}
+\newcommand{\conbinationform}[2]{\frac{#1!}{#2!(#1-#2)!}}
+\newcommand{\rconbination}[2]{CR_{#1,#2}=\frac{(#1+#2-1)!}{#2!(#1-1)!}}
+\newcommand{\clinear}[1]{\foreach \i in {1,...,#1}{x_\i+}}
+\newcommand{\fatorial}[2]{\foreach \i in {#1,...,#2}{\i.}}
+\newcommand{\soma}[2]{\sum_{n=#1}^{\infty}#2}
+\newcommand{\texto}{\color{mygray}\blindtext\color{black}}
+\newcommand{\fim}{\begin{flushright}
+
+   \emph{q.e.d}
+\end{flushright}}
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+%--------------%--------------%----------------------%-----------%--------------
+
+\title{Teoria Axiomática dos Conjuntos}
+\author{Beatriz de Faria, 11201810015}
+\date{Março, 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Exercício 3.3.}
+
+O conjunto $\bigcap A$ é definido por:
+
+$$
+x \in \bigcap A \Leftrightarrow \forall a \in A (x \in a)
+$$
+
+Queremos provar que:\\
+
+\textbf{(i) $\emptyset \in x$}
+
+De fato, como $ a \in A \Rightarrow$ a é indutivo. Então, pela definição de conjunto indutivo, $\forall a \in A (\emptyset \in a)$,isto é, $\emptyset \in x$. \\
+
+\textbf{(ii) $z \in x \Rightarrow s(z) \in x$}
+
+Fixe um $z \in x$ qualquer, como $z \in x \Rightarrow \forall a \in A (z \in a).$ Só que, $ a \in A \Rightarrow$ a é indutivo. Ou seja, $\forall a \in A (s(z) \in a)$. Portanto $s(z) \in x$.
+
+\fim
+
+\section{Exercício 3.14.}
+
+Por definição:
+
+$$
+m \leq n \Leftrightarrow (m \in n \lor m = n)
+$$
+
+Disso, temos que:
+
+$$
+m < n \Leftrightarrow (m \leq n \land m \neq n)
+$$
+
+é equivalente a dizer:
+
+$$
+m < n \Leftrightarrow ((m \in n \lor m = n) \land m \neq n)
+$$
+
+Note que não pode ocorrer m = n. Portanto, $m \in n$
+
+\section{Exercício 3.17.}
+
+Fixe $n \in \omega$ qualquer
+
+$(\Rightarrow)$ 
+
+Como $\omega$ é um conjunto indutivo, $\forall x \in \omega, s(x) \in \omega$. Suponha, por absurdo, que $\nexists k : s(k) = n$, além disso, $\forall a$ tal que a é um conjunto indutivo $\omega \subseteq a$. Seja a o conjunto construído da seguinte forma: $\forall y (y \in a \Leftrightarrow y = \emptyset \lor$ y é o sucessor de algum elemento de a). Note que existe um conjunto indutivo que satisfaz as hipóteses colocadas. 
+
+Como $\omega \subseteq a$, então $\forall y \in \omega (y \in a)$. Então, como n não pode ser o sucessor de um elemento k e $\forall y \in \omega (y = \emptyset \lor y = s(k))$ para algum k em $\omega$. Disto temos que $n = \emptyset$ o que contradiz nossa hipótese.
+
+$(\Leftarrow)$ 
+
+Essencialmente a mesma coisa feita anteriormente só que sem a parte do absurdo.
+
+\fim
+
+\section{Exercício 3.18.}
+
+\textbf{(a)}
+
+Fixe um $n \in \omega$ qualquer.
+
+Como $\omega$ é indutivo, $s(n) \in \omega$. Pela nossa definição de sucessor:
+
+$$
+s(n) = n \cup \{n\} = \{n ,\{n\}\}
+$$
+
+O axioma das partes nos dá que:
+
+$$
+\therefore n \in s(n) \land s(n) \in \omega \Rightarrow n \subseteq \omega
+$$
+\\
+\textbf{(b)}
+\\
+\textbf{(c)}
+
+\section{Exercício 4.17.}
+
+\section{Exercício 4.21.}
+
+\section{Exercício 5.5.}
+
+(A ordem das demonstrações nesse exercicio vai ficar meio esquisita, mas, vamos lá
+
+\textbf{(i) $\Rightarrow$ (iii)}
+
+Nossa hipótese é que:
+
+$$
+(x \leq y \land x \neq y)
+$$
+
+Pelo modo como definimos $x \leq y$:
+
+$$
+((x \in y \lor x = y) \land x \neq y)
+$$
+
+$$
+((x \in y \land x \neq y) \lor (x = y \land x \neq y) 
+$$
+
+A segunda condição no nosso \textbf{\asp{ou}} não pode ocorrer, portanto, ocorre que:
+
+$$
+(x \in y \land x \neq y)
+$$
+ 
+ Em particular:
+ 
+$$
+x \in y
+$$
+\\
+\textbf{(i) $\Rightarrow$ (ii)}
+
+Queremos provar que:
+
+$$
+\neg (y \in x \lor y = x)
+$$
+
+que é a mesma coisa que:
+
+$$
+(y \notin x \land y \neq x)
+$$
+
+Primeiramente, vamos provar que $y \neq x$. Por hipótese, temos: 
+
+$$
+x \leq y \land x \neq y
+$$
+
+Portanto, $y \neq x$ decorre diretamente da nossa hipótese.
+
+Agora, vamos provar que $y \notin x$. Já sabemos que $(i) \Rightarrow (iii)$, então temos que $x \in y$. Suponha por absurdo, que $y \in x$. Isto é:
+
+$$
+x \in y \land y \in x
+$$
+
+
+
+\textbf{() $\Rightarrow$ ()}
+\\
+\textbf{() $\Rightarrow$ ()}
+\\
+\section{Exercício 5.13.}
+
+
+
+\end{document}
