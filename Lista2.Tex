@@ -109,6 +109,8 @@ $$
 
 Note que não pode ocorrer m = n. Portanto, $m \in n$
 
+\fim
+
 \section{Exercício 3.17.}
 
 Fixe $n \in \omega$ qualquer
@@ -142,18 +144,189 @@ O axioma das partes nos dá que:
 $$
 \therefore n \in s(n) \land s(n) \in \omega \Rightarrow n \subseteq \omega
 $$
+\fim
 \\
 \textbf{(b)}
+
+Seja $n \in \omega : n \neq \emptyset$. Queremos provar que:
+
+$$
+n = \{m \in \omega : m < n \} = \{m \in \omega: m \in n\}
+$$
+
+Caso 1. $n = \emptyset$
+
+$$
+\therefore \nexists m \in n
+$$
+
+Nossa proposição é valida por vacuidade \textit{(é? Não sei se provei ou não, mas acho que é isso)}
+
+Caso 2. $n \neq \emptyset$
+
+Pelo exercício 3.17 sabemos que:
+
+$$
+\exists k \in \omega : n = s(k) = \{0,1,2,...,k\}
+$$
+
+Temos que mostrar que o conjunto $\{0,1,2,...,k\} = \{m \in \omega : m \in n\}$. Para tanto, fixe um $x \in \{0,1,2,...,k\}$ qualquer. Note que $x \in n$ pois $s(k) = n$, devemos mostrar, portanto, que $x \in \omega$. Como $x \in s(k) \land s(k) \in \omega$, então, pela transitividade de $\omega$, $x \in \omega$
+
+
+Fixe um $y \in \{m \in \omega : m \in n\}$ qualquer, $y \in \omega \land y \in n$ como $y \in n \Rightarrow y \in s(k) \because n = s(k)$
+\fim
 \\
 \textbf{(c)}
 
+($\Rightarrow$)
+
+Temos por hipótese que: $m \in s(n)$ (Lema 3.10). Portanto:
+
+$$
+m \in n \cup \{n\}
+$$
+
+Caso 1. $m \in \{n\}$
+
+Neste caso, por definição, $m \subseteq n$ 
+
+Caso 2. $m \in n$
+
+Temos, então, pelo lema 3.12 que:
+
+$$
+s(m) \leq n
+$$
+
+Logo,
+
+$$
+s(m) \in n \lor s(m) = n
+$$
+
+Caso 2.1. $s(m) \in n$
+
+$$
+m \in s(m) \land s(m) \in n
+$$
+
+$$
+\therefore m \subseteq n
+$$
+
+Caso 2.2. $s(m) = n$
+
+$$
+n = m \cup \{m\} 
+$$
+
+$$
+m \in \{m\} \land \{m\} \in n
+$$
+
+$$
+\therefore m \subseteq n 
+$$
+
+($\Leftarrow$)
+
+Temos, por hipótese que $m \subseteq n$, queremos mostrar que $m \in n \lor m = n$. Suponha, por absurdo, que $m \notin n \land m \neq n$. 
+
+\begin{equation}
+\exists x : m \in x \land x \subseteq m     
+\end{equation}
+
+
+
+Ou seja:
+
+$$
+\forall y ( y \subseteq a \Leftrightarrow \forall b \in y (b \in a))
+$$
+
+Isso quer dizer que podemos reescrever (1) como:
+
+$$
+m \in m
+$$
+
+Mas isto é um absurdo, pois $m \in \omega$ e omega é um ordinal.
+
+\textit{Não sei se posso usar essa informação aqui D: (em teoria no 3.18 a gente ainda não viu ordinais), mas não consegui provar a partir do item (b)}
+
+\fim
+
+
+
+
+
 \section{Exercício 4.17.}
+
+\textit{Nem se dê ao trabalho de corrigir este e o próximo exercício, eles estão errados, ou, no mínimo, incompletos}
+
+Queremos provar que o conjunto: $f\upharpoonright_s = \{ (x,y) \in f : x \in s\}$ é um isomorfismo de ordens entre $(s, \trianglelefteq)$ e $(f[s], \preceq)$. Ou seja:
+
+$$
+\forall x \in s \forall y \in f[s] (x \trianglelefteq y \Leftrightarrow f\upharpoonright_s(x) \preceq f\upharpoonright_s(y))
+$$
+
+Sendo que:
+
+$$
+y \in f[s] \Leftrightarrow \exists x \in s (f(x) = y)
+$$
+
+Em outras palavras:
+
+$$
+\forall x \in s (x \trianglelefteq f(x) \Leftrightarrow f\upharpoonright_s(x) \preceq f\upharpoonright_s(f(x)))
+$$
+
+
+
 
 \section{Exercício 4.21.}
 
+\textbf{(a)} Para mostrar que $(S, \preceq)$ é uma ordem total temos que mostrar que:
+
+$$
+\forall x \in s \forall y \in s (x \preceq y \lor y \preceq x)
+$$
+
+Suponha por absurdo que não ocorre nenhuma das coisas acima, por hipótese temos que:
+
+$$
+\forall x, y \in S (x \preceq y \Leftrightarrow x=y \lor( x \neq y \land f(\triangle(x,y))=0))
+$$
+
+Portanto, existem $x,y \in S$ tais que:
+
+$$
+x \neq y \land (x = y \lor x(\triangle(x,y) \neq 0)) 
+$$
+
+$$
+x \neq y \land x(\triangle(x,y)) \neq 0
+$$
+
+Como $x \in \{0,1\}$
+
+$$
+x \neq y \land  x(\triangle(x,y)) = 1
+$$
+
+$$
+\triangle (x,y) = min \{n \in \omega : x(n) \neq y(n)\}
+$$
+
+Note que $x(\triangle(x,y)) = x(min\{n \in \omega: x(n) \neq y(n)\}) = 1$
+
+
+
+
 \section{Exercício 5.5.}
 
-(A ordem das demonstrações nesse exercicio vai ficar meio esquisita, mas, vamos lá
+(A ordem das demonstrações nesse exercício vai ficar meio esquisita, mas, vamos lá
 
 \textbf{(i) $\Rightarrow$ (iii)}
 
@@ -207,20 +380,169 @@ $$
 
 Portanto, $y \neq x$ decorre diretamente da nossa hipótese.
 
-Agora, vamos provar que $y \notin x$. Já sabemos que $(i) \Rightarrow (iii)$, então temos que $x \in y$. Suponha por absurdo, que $y \in x$. Isto é:
+Agora, vamos provar que $y \notin x$. Já sabemos que $(i) \Rightarrow (iii)$, então temos que $x \in y$. Suponha por absurdo, que $y \in x$. Como $\alpha$ é um ordinal e $x \in \alpha$, em particular $x$ é um ordinal
 
 $$
-x \in y \land y \in x
+\therefore y \subseteq x 
 $$
 
+$$
+x \in y \land y \subseteq x \Rightarrow x \in x
+$$
 
+O que é um absurdo pois $\alpha$ é um ordinal.
+\\
+\textbf{(iii) $\Rightarrow$ (i)}
+provamos no item anterior que $x \in y \Rightarrow y \notin x$, devemos provar, portanto, que $x \neq y$, suponha por absurdo que $x = y$, teremos que $x \in x$, o que é um absurdo, pois $\alpha$ é um ordinal.
+\\
+\textbf{(ii) $\Rightarrow$ (iii)}
+Temos, por hipótese que:
 
-\textbf{() $\Rightarrow$ ()}
+$$
+x \neq y \land y \notin x
+$$
+
+Suponha, por absurdo que $x \notin y$
+
+Nesse caso $\neg(xR y) \land \neg (y R x)$. Ou seja, não há relação de ordem em $\alpha$, que é um ordinal, então é um absurdo.
 \\
-\textbf{() $\Rightarrow$ ()}
+\textbf{(ii) $\Rightarrow$ (i)}
+
+Como (ii) $\Rightarrow$ (iii) e (iii) $\Rightarrow$ (i), então, (ii) $\Rightarrow$ (i)
 \\
+\textbf{(iii) $\Rightarrow$ (ii)}
+
+Como (iii) $\Rightarrow$ (i) e (i) $\Rightarrow$ (ii), então, (iii) $\Rightarrow$ (ii)
+
+\fim
+
 \section{Exercício 5.13.}
 
+\textit{Eu vou separar as bolinhas em números pra organizar melhor}
 
+\textbf{1. $\alpha = \beta \lor \alpha < \beta \lor \beta < \alpha$}
+
+Primeiramente vamos provar que uma dessas coisas ocorre (na real, não vamos, porque já o fizemos).
+
+A demonstração é a própria proposição 5.12.
+
+Agora, vamos provar que apenas uma dessas coisas ocorre. 
+
+\textbf{1.1. Suponha, por absurdo, que $\alpha = \beta \land \alpha < \beta$}
+
+Como $\alpha = \beta$, $\alpha < \alpha \Rightarrow \alpha \in \alpha$, que é um absurdo, pois $\alpha \in \beta$ que é um ordinal.
+
+\textbf{1.2 Suponha, por absurdo, que $\alpha = \beta  \land \beta < \alpha$}
+
+(Análogo ao anterior)
+
+\textbf{1.3 Suponha, por absurdo, que $ \alpha < \beta \land \beta < \alpha$}
+
+Portanto $\alpha \in \beta$, como $\beta$ é um ordinal $\alpha \subseteq \beta$
+
+$$
+\therefore \beta \in \alpha \land \alpha \subseteq \beta
+$$
+
+$$
+\beta \in \beta
+$$
+
+O que é um absurdo, pois $\beta \in \alpha$ e $\alpha$ é um ordinal.
+
+\textbf{2. $\alpha < \beta \Leftrightarrow (\alpha \leq \beta \land \alpha \neq \beta)$}
+
+$(\Rightarrow)$
+
+Por hipótese:
+
+$$
+\alpha \in \beta
+$$
+
+Por si só, isto já satisfaz que:
+
+$$
+(\alpha \in \beta \lor \alpha = \beta) \land (\alpha \neq \beta)
+$$
+
+pois isto é o mesmo que dizer que:
+
+$$
+\alpha \in \beta
+$$
+
+($\Leftarrow$)
+
+Temos que:
+
+$$
+(\alpha \in \beta \lor \alpha = \beta) \land (\alpha \neq \beta)
+$$
+
+Que é o mesmo que dizer:
+
+$$
+\alpha \in \beta
+$$
+
+Pois $\alpha$ não pode ser simultaneamente igual e diferente de $\beta$.
+
+\textbf{3. $\alpha \leq \beta \land \beta \leq \gamma \Rightarrow \alpha \leq \gamma$}
+
+Temos que:
+
+$$
+\alpha \subseteq \beta \land \beta \subseteq \gamma
+$$
+
+$$
+\forall x \in \alpha (x \in \beta)
+$$
+
+$$
+\forall y \in \beta (y \in \gamma)
+$$
+
+Como isto é válido para todo y em $\beta$, em particular, é valido para os $x \in a$. Portanto
+
+$$
+\forall x \in a (x \in \gamma)
+$$
+
+$$
+\therefore a \subseteq \gamma
+$$
+
+$$
+\alpha \leq \gamma
+$$
+
+\textbf{4. $\alpha < \beta \land \beta < \gamma \Rightarrow \alpha < \gamma$}
+
+Temos que:
+
+$$
+\alpha \in \beta \land \beta \in \gamma
+$$
+
+Como $\gamma$ é um ordinal:
+
+$$
+\alpha \in \beta \land \beta \subseteq \gamma
+$$
+
+$$
+\forall x \in \beta (x \in \gamma)
+$$
+
+Como isso é valido para todo x, em particular é válido para $\alpha$
+
+$$
+\therefore \alpha \in \gamma = \alpha < \gamma
+$$
+
+\fim
 
 \end{document}
+
