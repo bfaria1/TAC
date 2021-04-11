@@ -1,0 +1,311 @@
+\documentclass[12pt]{extarticle}
+\usepackage[brazil]{babel}
+\usepackage{graphicx, hyperref}
+\usepackage{framed}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[top=1 in,bottom=1in, left=1 in, right=1 in]{geometry}
+\usepackage{graphicx}
+\usepackage[skip=2pt]{caption}
+\usepackage{blindtext}
+\usepackage[fixlanguage]{babelbib}
+\usepackage{chngcntr}
+\usepackage{calrsfs}
+\captionsetup{font={small}} 
+\graphicspath{{Figuras/}}
+\usepackage{appendix}
+\newcommand{\asp}[1]{``#1"}
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\nota}[1]{\todo[color=black!10, bordercolor=white!100, linecolor = black!20, size =\scriptsize]{#1} }
+\definecolor{mypink1}{rgb}{0.858, 0.188, 0.478}
+\definecolor{mypink2}{RGB}{219, 48, 122}
+\definecolor{mypink3}{cmyk}{0, 0.7808, 0.4429, 0.1412}
+\definecolor{mygray}{gray}{0.6}
+\newcommand{\arb}{um elemento arbitrário }
+\newenvironment{resposta}{ \color{mygray}}{}
+\newcommand{\true}{\textcolor{red}{\textbf{\textit{V}}}}
+\newcommand{\false}{\textcolor{red}{\textbf{\textit{F}}}}
+\newcommand{\keys}[1]{\{#1\}}
+\newcommand{\subscript}[2]{$#1 _ #2$}
+\newcommand{\definition}[3][x]{\{#1|#1 \in \mathbb{#2},#3\}}
+\newcommand{\natura}{\mathbb{N}}
+\newcommand{\integer}{\mathbb{Z}}
+\newcommand{\real}{\mathbb{R}}
+\newenvironment{pif}[3][1]{
+Tomando $n = #1$ então $#2$ e $#3$
+
+Agora vamos assumir que a expressão é valida para $#1 > n \leq k$ e vamos provar que funciona para $n=k+1$.
+}{}
+\newcommand{\arranjo}[2]{A_{#1,#2}=\frac{#1!}{(#1-#2)!}}
+\newcommand{\arranjoform}[2]{\frac{#1!}{(#1-#2)!}}
+\newcommand{\conbination}[2]{C_{#1,#2}=\frac{#1!}{#2!(#1-#2)!}}
+\newcommand{\conbinationform}[2]{\frac{#1!}{#2!(#1-#2)!}}
+\newcommand{\rconbination}[2]{CR_{#1,#2}=\frac{(#1+#2-1)!}{#2!(#1-1)!}}
+\newcommand{\clinear}[1]{\foreach \i in {1,...,#1}{x_\i+}}
+\newcommand{\fatorial}[2]{\foreach \i in {#1,...,#2}{\i.}}
+\newcommand{\soma}[2]{\sum_{n=#1}^{\infty}#2}
+\newcommand{\texto}{\color{mygray}\blindtext\color{black}}
+\newcommand{\fim}{\begin{flushright}
+
+   \emph{q.e.d}
+\end{flushright}}
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+%--------------%--------------%----------------------%-----------%--------------
+
+\title{Teoria Axiomática dos Conjuntos}
+\author{Beatriz de Faria, 11201810015}
+\date{Abril, 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Exercício 5.16.}
+
+\subsection{$\delta$ é um ordinal}
+
+Para mostrarmos que $\delta$ é um ordinal, vamos dividir em 3 partes:
+
+\subsubsection{$\delta$ é transitivo}
+
+Tome um $x \in \delta$ qualquer. Por hipótese temos que:
+
+$$
+\forall x (x \in \delta \Leftrightarrow \forall \alpha \in B (x \in \alpha))
+$$
+
+Em particular, temos que $x \in \alpha$. Note que, como $B$ é um conjunto de ordinais, $\alpha$ é um ordinal, portanto:
+
+$$
+\forall x \in \alpha (\wp(x) \in \alpha)
+$$
+
+Como isto é válido $\forall \alpha$ então, $\wp(x) \in \delta$.
+
+\subsubsection{$\forall x \in \delta (x \notin x)$}
+
+Tome um $x \in \delta$ qualquer, pelo mesmo raciocínio do item anterior, sabemos que $x \in \alpha$ e $\alpha$ é um ordinal. Como $\alpha$ é um ordinal:
+
+$$
+\forall y \in \alpha (y \notin y)
+$$
+
+Como isto é válido $\forall y$, em particular, vale para $x$. Portanto $x \notin x$
+
+\subsubsection{$\forall x,y \in \delta (x \leq y \Leftrightarrow (x \in y \lor y = x)$}
+
+Tome $x,y \in \delta$ quaisquer. Sabemos que $x,y \in \alpha (\forall \alpha \in B)$, como $\alpha$ é um ordinal:
+
+$$
+\forall z,w \in \alpha (z \leq w \Leftrightarrow (z \in w \lor z = w))
+$$
+
+Como isto é válido para quaisquer $z,w$ podemos dizer, sem perda de generalidade, que isto vale para $z = x$ e $w = y$. Temos que:
+
+$$
+\forall x,y \in \alpha (x \leq y \Leftrightarrow (x \in y \lor x = y))
+$$
+
+Como queríamos.
+
+\subsection{$\delta \in B$}
+
+Sabemos (na real ainda não sabemos, mas decorre da parte 1.3 deste exercício) que $\delta \in \alpha \lor \delta = \alpha$ para todo $\alpha \in B$. 
+
+\textbf{Caso 1. $\delta \in \alpha$}
+
+Como $\alpha \in B$ e $\delta \in \alpha$ logo,
+
+$$
+\delta \subseteq B
+$$
+
+Note que, se ocorre $\delta = B$, então $\alpha \in \delta$ e como $\delta$ é um ordinal, $\alpha \subseteq \beta$, ou seja $\delta = \alpha$, o que contradiz nossa hipótese de que $\delta \in \alpha \because \delta \notin \delta$. Portanto, podemos dizer que $\delta \subsetneq B$ e, pela proposição 5.9:
+
+$$
+\delta \subsetneq B \Rightarrow \delta \in B
+$$
+
+\textbf{Caso 2. $\delta = \alpha$}
+
+Como $\alpha \in B \Rightarrow \delta \in B$ 
+
+\subsection{$\forall \alpha \in B (\delta \leq \alpha)$}
+
+Suponha por absurdo que isto não ocorre, isto é: $\alpha \in \delta$ (proposição 5.12), para algum $\alpha \in B$. Note que,
+
+$$
+\forall x (x \in \delta \Leftrightarrow \forall A \in B (x \in A))
+$$
+
+Como isto vale $\forall A$, em particular, vale para $\alpha$, portanto:
+
+$$
+\forall x \in \delta \Rightarrow x \in \alpha
+$$
+
+Como isto vale $\forall x \in \delta$, em particular, vale para $x = \alpha$. Teremos que:
+
+$$
+\alpha \in \alpha
+$$
+
+$$
+\therefore \exists x \in \delta (x \in x)
+$$
+
+O que contradiz o fato de que $\delta$ é um ordinal
+
+\fim
+
+\section{Exercício 5.28.}
+
+\subsection{Prove que, se $y \in a$ e $y'\in a$ são sucessores de $x \in a$, então $y = y'$.}
+
+Suponha, por absurdo, que $y \neq y'$. Suponha também, sem perca de generalidade, que:
+
+
+$$
+y \triangleleft y'
+$$
+
+Como $x \triangleleft y$, então:
+
+$$
+x \triangleleft y \triangleleft y'
+$$
+
+O que é um absurdo, pois $y \in a$ e $y'$ é um sucessor de x, então, $\nexists z \in a : x \triangleleft z \triangleleft y'$.
+
+\subsection{Prove que $(a, \trianglelefteq)$ e $(\omega, \leq)$ são ordens isomorfas}
+
+Queremos mostrar que existe uma função bijetora satisfazendo:
+
+$$
+\forall x \in a \forall y \in a (x \trianglelefteq y \Leftrightarrow f(x) \leq f(a))
+$$
+
+Construa a função $f: a \rightarrow \omega$ da seguinte maneira:
+
+1. $f(x) = \emptyset$ se $x =$ min$_{\trianglelefteq}(a)$
+
+A existência de um elemento mínimo é garantida pois $\trianglelefteq$ é uma boa ordem sobre a.
+
+2. $f(S(y)) = s(i_y)$
+
+Onde o sucessor de um elemento $y$ de $a$ denotado por $ := S(y)$ (se $x \neq$ min$_{\trianglelefteq}(a)$, então $\exists y : x = S(y)$) e $i_y$ é o y-ésimo elemento de $\omega$, de modo que:
+\\
+Se $y = $ min$_{\trianglelefteq}(a)$, $s(i) = s(\emptyset)$ \\
+Se $y =$ S(min$_{\trianglelefteq}(a)$), $s(i) = s(s(\emptyset))$\\
+Se $y =$ S(S(min$_{\trianglelefteq}(a)$)), $s(i) = s(s(s(\emptyset)))$\\
+E assim por diante \textit{(espero que tenha ficado claro, acho que é a primeira vez que estou definindo uma função por recursão)}. Vamos provar que essa função é bijetora.
+
+\textbf{1. Ela é injetora}
+
+Sejam $s(i_m), s(i_n) \in \omega $ tais que $s(i_m) = s(i_n)$.
+
+$$
+\therefore i_m = i_n \Rightarrow m = n \Rightarrow S(m) = S(n)
+$$
+
+
+
+\textbf{2. Ela é sobrejetora}
+
+Decorre do fato de que a não possui elemento máximo na ordem $\trianglelefteq$, portanto, $\forall s(i) \in \omega (\exists n \in a: f(S(n) = s(i))$, além disso $\emptyset =$ min$_{\trianglelefteq}(a)$. Então, $\forall m \in \omega (\exists n \in a : m = f(n))$
+
+\subsection{Mostre, por meio de contraexemplos, que o resultado do item 2.2 seria falso se qualquer uma das três condições listadas fosse omitida.}
+
+\textbf{1. a possui elemento máximo na ordem $\trianglelefteq$}
+
+Seja $(a, \trianglelefteq)$ um segmento inicial próprio de $\omega$ (note que este conjunto respeita as demais condições impostas sobre a), temos pela proposição 4.15 que o resultado anterior é falso. 
+
+\textbf{2. $\trianglelefteq$ não é uma boa-ordem sobre a}
+
+
+
+\textbf{3. $\neg$ (para todo $y \in a$, se não existe $x \in a$ tal que y é o sucessor de x, então y = min$_{\trianglelefteq}(a)$)}
+
+
+\section{Exercício 5.44.}
+
+\subsection{$s(\alpha) \in \beta$}
+
+Vamos provar que se $s(\alpha) \notin \beta \Rightarrow \alpha \notin \beta$
+
+Sabemos que $s(\alpha) = \alpha \cup \{\alpha\}$. Como $s(\alpha) \notin \beta$, $s(\alpha) \nsubseteq \beta$ (note que $\beta \neq s(\alpha)$ pois $\beta$ é um ordinal limite), então $\exists x : x \in s(\alpha) \land x \notin \beta$, o que é o mesmo que dizer que:
+
+$$
+\alpha \notin \beta \lor \{\alpha\} \notin \beta
+$$
+
+
+\textbf{Caso 1. $\alpha \notin \beta$}
+
+É imediado
+
+\textbf{Caso 2. $\{\alpha\} \notin \beta$}
+
+Se $\{\alpha\} \notin \beta$ então, dado que beta é um ordinal, $\alpha \notin \beta \because \forall y \in \beta (y \subseteq \beta)$ 
+
+
+\subsection{$\Rightarrow$}
+
+Suponha, por absurdo, que para um ordinal limite $\beta$, $\exists m \in \beta : \forall x \in \beta (x \leq m)$. Como isto vale $\forall x$, em particular, vale para $x = m$, porém, como $m \in \beta \Rightarrow s(m) \in \beta$ e $m < s(m)$, o que é um absurdo. 
+
+\subsection{$\Leftarrow$}
+
+Seja $a = s(\alpha)$ para algum $\alpha$. Queremos mostrar que $\forall x \in a \exists m \in a (x \leq m)$. Seja $m = \{\alpha\}$, como $a = s(\alpha) = \alpha \cup \{\alpha\}$. 
+
+\textbf{Caso 1. x = $\alpha$}
+
+$$\alpha \in \{\alpha\} \therefore \alpha \leq m$$
+
+\textbf{Caso 2. x = $\{\alpha\}$}
+
+$$
+x = m \therefore x \leq m
+$$
+
+\fim
+
+\section{Exercício 5.47.}
+
+Seja $\alpha$ um conjunto de ordinais que não possui elemento máximo. Queremos mostrar que $\bigcup \alpha$ é um ordinal limite.
+
+$$
+x \in \bigcup \alpha \Leftrightarrow \exists z (z \in \alpha \land x \in z)
+$$
+
+Note que, $\nexists m \in \alpha \forall z \in \alpha   : z \leq m$, portanto $m \notin \bigcup \alpha$, então, $\bigcup \alpha$ não possui elemento máximo e, vimos no exercício 5.44 que isso ocorre somente se $\bigcup \alpha$ é um ordinal limite.  
+
+\fim
+
+\section{Exercício 6.17.}
+
+Queremos mostrar que:
+
+$$
+\forall n \in \omega (n \precsim a  \backslash t)
+$$
+
+Ou seja, devemos determinar uma função ($f:n \rightarrow a \backslash t$) de modo que:
+
+$$
+\forall n \in \omega (\forall x,y \in n  (x \neq y \Rightarrow f(x) \neq f(y))
+$$
+
+Sabemos, por hipótese que $t$ é um conjunto finito, então $\exists n \in \omega: n \thickapprox t$
+
+\section{Exercício 6.18.}
+
+
+
+\end{document}
