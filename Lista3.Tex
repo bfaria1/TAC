@@ -184,6 +184,8 @@ $$
 
 O que é um absurdo, pois $y \in a$ e $y'$ é um sucessor de x, então, $\nexists z \in a : x \triangleleft z \triangleleft y'$.
 
+\fim
+
 \subsection{Prove que $(a, \trianglelefteq)$ e $(\omega, \leq)$ são ordens isomorfas}
 
 Queremos mostrar que existe uma função bijetora satisfazendo:
@@ -221,6 +223,8 @@ $$
 
 Decorre do fato de que a não possui elemento máximo na ordem $\trianglelefteq$, portanto, $\forall s(i) \in \omega (\exists n \in a: f(S(n) = s(i))$, além disso $\emptyset =$ min$_{\trianglelefteq}(a)$. Então, $\forall m \in \omega (\exists n \in a : m = f(n))$
 
+\fim
+
 \subsection{Mostre, por meio de contraexemplos, que o resultado do item 2.2 seria falso se qualquer uma das três condições listadas fosse omitida.}
 
 \textbf{1. a possui elemento máximo na ordem $\trianglelefteq$}
@@ -229,10 +233,26 @@ Seja $(a, \trianglelefteq)$ um segmento inicial próprio de $\omega$ (note que e
 
 \textbf{2. $\trianglelefteq$ não é uma boa-ordem sobre a}
 
+Se $\forall x \in a (x = s(\alpha))$ para algum $\alpha \in a$, então $a$ não é indutivo pois $\emptyset \notin a$. Se ocorre:
+
+$$
+\exists x \in a : f(x) = \emptyset
+$$
+
+Note que $x = s(\alpha)$, portanto, $f(\alpha) = n$ e $n \in \emptyset$ (pela ordem de $\omega$), o que é um absurdo
 
 
 \textbf{3. $\neg$ (para todo $y \in a$, se não existe $x \in a$ tal que y é o sucessor de x, então y = min$_{\trianglelefteq}(a)$)}
 
+Seja $a = \omega \cup \{\omega\}$
+
+Se $a$ e $\omega$ fossem ordens isomorfas, então existe uma função bijetora de modo que:
+
+$$
+\exists x \in \omega : f(x) = \omega
+$$
+
+Como $\omega$ é indutivo $s(x) \in \omega$, então, precisamos de $c \in a$ de modo que $\omega \triangleleft c$ (para respeitar que as ordens sejam isomorfas), e dado que $a = \omega \cup \{\omega\}$ e $c \neq \omega$, portanto $c \in \omega \Rightarrow \omega \subsetneq \omega$, o que é um absurdo.
 
 \section{Exercício 5.44.}
 
@@ -266,12 +286,12 @@ Seja $a = s(\alpha)$ para algum $\alpha$. Queremos mostrar que $\forall x \in a 
 
 \textbf{Caso 1. x = $\alpha$}
 
-$$\alpha \in \{\alpha\} \therefore \alpha \leq m$$
+$$x \in \{\alpha\} \therefore x < m \Rightarrow x \leq m$$
 
 \textbf{Caso 2. x = $\{\alpha\}$}
 
 $$
-x = m \therefore x \leq m
+x = m \Rightarrow x \leq m
 $$
 
 \fim
@@ -296,16 +316,95 @@ $$
 \forall n \in \omega (n \precsim a  \backslash t)
 $$
 
-Ou seja, devemos determinar uma função ($f:n \rightarrow a \backslash t$) de modo que:
+Seja o conjunto:
 
 $$
-\forall n \in \omega (\forall x,y \in n  (x \neq y \Rightarrow f(x) \neq f(y))
+\alpha = \{n \in \omega : n \precsim a  \backslash t\}
 $$
 
-Sabemos, por hipótese que $t$ é um conjunto finito, então $\exists n \in \omega: n \thickapprox t$
+Note que, $\forall n \in \alpha \Rightarrow n \in \omega \therefore \alpha \subseteq \omega$, ou seja, se demonstrarmos que $\alpha$ é indutivo, pelo produto da indução finita, teremos o resultado esperado.
+
+\textbf{Parte 1:}
+
+$$
+\emptyset \in \alpha
+$$
+
+Queremos que exista uma $f:\emptyset \rightarrow a \backslash t$ de modo que $\forall x,y \in \emptyset (x \neq y \Rightarrow f(x) \neq f(y))$. O que vale por vacuidade.
+
+\textbf{Parte 2:}
+
+$$
+\forall n \in \alpha (s(n) \in \alpha)
+$$
+
+Fixe um $n \in \alpha$ qualquer, sabemos que existe uma função $f: n \rightarrow a \backslash t$ de modo que $\forall x, y \in n (x \neq y \Rightarrow f(x) \neq f(y))$. Queremos mostrar que existe uma função $g: s(n) \rightarrow a \backslash t$ de modo que $\forall x, y \in s(n) (x \neq y \Rightarrow g(x) \neq g(y))$
+
+Sabemos que $s(n) = n \cup \{n\}$, se $x \in n$, sabemos pela nossa hipótese da indução que isto vale, ou seja $g(x) = f(x)$ se $x \in n$. Queremos demonstrar que $\exists \beta \in a \backslash t : \beta \notin f[n]$, e assim, poderemos construir a função de modo que se $x = n \Rightarrow g(x) = \beta$.
+
+Por hipótese: $\exists r \in \omega : t \approx r$. Além disso, $a$ é infinito, então $\omega \precsim a$. Portanto, $\omega \backslash r \precsim a \backslash t$. Então, o que queremos provar é, na verdade:
+
+$$
+\exists \beta' \in \omega \backslash r : \beta' \notin f[n]
+$$
+
+Suponha, por absurdo que:
+
+$$
+\forall \beta' \in \omega \backslash r ( \exists z \in n : f(z) = \beta')
+$$
+
+Note que, para que isto ocorra, precisamos que:
+
+$$
+\forall \beta' \in \omega (\exists z \in n + r : f(z) = \beta') 
+$$
+
+Como $n,r \in \omega$, então $n+r \in \omega$, então, nosso resultado contradiz a proposição 6.12. Garantindo a existência de $\beta$
+
+\fim
 
 \section{Exercício 6.18.}
 
+\textit{Eu tentei fazer pela sugestão que você deu e não deu certo, então eu meio que chutei, com certeza está errado}
 
+Queremos demonstrar que $f[t]$ é finito. Para tanto, suponha por absurdo que:
 
+$$
+f[t] \approx \omega
+$$
+
+Temos por hipótese que:
+
+$$
+t \approx n \in \omega
+$$
+
+Sabemos que:
+
+$$
+y \in f[t] \Leftrightarrow \exists x \in t : f(x) = y
+$$
+
+Sejam $g:f[t] \rightarrow \omega$ e $h: t \rightarrow n$ funções bijetoras. Temos:
+
+$$
+y \in g(f[t]) \Leftrightarrow \exists x \in g(t): g(f(x)) = y
+$$
+
+Note que $y \in g(f[t]) \Leftrightarrow y \in \omega$ (pois a função é bijetora)
+
+$$
+\therefore y \in \omega \Leftrightarrow \exists h(x) \in h(g(t)) : h(g(f(x))) = h(y)
+$$
+
+$$
+h(y) \in n \Rightarrow \omega \subseteq n
+$$
+
+O que é um absurdo.
+
+\fim
+
+\textit{Erradasso, eu sei, só não quis deixar em branco mesmo :S}
 \end{document}
